@@ -1,0 +1,53 @@
+@echo off
+if "%1"=="" goto help
+if "%1"=="a:" goto help
+if "%1"=="A:" goto help
+if "%1"=="b:" goto help
+if "%1"=="B:" goto help
+cls
+Echo  ------------------------------------------------
+echo       Kingdom III (Chinese) Install Program
+echo         Program need 4M Hard Disk space.
+echo               Directory Name: %1\koei3
+echo              Hit a key to continue...
+Echo  ------------------------------------------------
+pause >nul
+md %1\koei3
+copy install.com %1\koei3 >nul
+if not exist %1\koei3\install.com goto help
+
+cls
+echo Loading....
+copy *.* %1\koei3
+
+:disk2
+echo Insert Disk 2 in Default Drive
+pause
+if not exist open.exe goto disk2
+copy *.* %1\koei3
+
+:disk3
+echo Insert Disk 3 in Default Drive
+pause
+if not exist name.16p goto disk3
+copy *.* %1\koei3
+
+:disk4
+echo Insert Disk 4 in Default Drive
+pause
+if not exist sangoku3.sav goto disk4
+copy *.* %1\koei3
+
+%1
+cd\koei3
+
+cls
+Echo Install Complete !!!
+echo Type koei to start game
+goto end
+
+:help
+echo 
+echo     Install c: or d: etc
+echo ÿ
+:end
